@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.8.1"
 }
 
 group 'io.headspin.hackathon'
@@ -9,6 +10,7 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -34,6 +36,20 @@ dependencies {
 
     //assertj
     implementation 'org.assertj:assertj-core:3.16.1'
+
+    //allure
+    implementation group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
+    implementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.13.2'
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.2'
+
+    //logger
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.3'
+
+    //joda-time
+    implementation group: 'joda-time', name: 'joda-time', version: '2.10.6'
+
 }
 
 tasks.withType(Test) {
@@ -55,6 +71,7 @@ task runTests(type: Test) {
         useDefaultListeners  true
         listeners << 'io.headspin.hackathon.listeners.SiteListener'
         listeners << 'io.headspin.hackathon.listeners.DriverListener'
+        listeners << 'io.headspin.hackathon.listeners.ReportListener'
         outputDirectory  file("$buildDir/" + System.getProperty('tags', 'NONE'))
     }
 }

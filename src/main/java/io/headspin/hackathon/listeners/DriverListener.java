@@ -2,14 +2,11 @@ package io.headspin.hackathon.listeners;
 
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import io.headspin.hackathon.Constants;
-import io.headspin.hackathon.modules.BrowserModule;
-import io.headspin.hackathon.modules.PageModule;
-import io.headspin.hackathon.modules.PropertyModule;
-import io.headspin.hackathon.modules.SiteModule;
-import io.headspin.hackathon.pages.LaunchPage;
+import io.headspin.hackathon.modules.*;
+import io.headspin.hackathon.site.Constants;
+import io.headspin.hackathon.site.Launcher;
+import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
 import org.testng.*;
 
 import java.util.Arrays;
@@ -20,16 +17,11 @@ public class DriverListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        ThreadContext.put("ROUTINGKEY", result.getName());
         Injector driverInjector = result.getTestContext().getSuite().getParentInjector().createChildInjector(setupModules());
         result.setAttribute(Constants.DRIVER_INJECTOR, driverInjector);
         result.setAttribute(Constants.PAGE_INJECTOR, driverInjector);
-        launchSite(driverInjector);
-    }
-
-    protected void launchSite(Injector pageInjector) {
-        LaunchPage launchPage = pageInjector.getInstance(LaunchPage.class);
-        launchPage.launch();
-        launchPage.getSiteDetails().assertThatSiteIsUp();
+        driverInjector.getInstance(Launcher.class).launch();
     }
 
     @Override

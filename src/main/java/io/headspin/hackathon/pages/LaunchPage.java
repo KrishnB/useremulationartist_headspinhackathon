@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import io.headspin.hackathon.annotations.Url;
 import io.headspin.hackathon.models.Site;
 
-import java.util.logging.Logger;
+import static io.headspin.hackathon.reports.ReportLogger.log;
 
 public class LaunchPage extends BasePage {
 
@@ -12,17 +12,15 @@ public class LaunchPage extends BasePage {
     @Url
     String url;
 
-    @Inject
-    Logger logger;
 
     public void launch() {
-        logger.info("Launching site => "+url);
+        log("Launching site => "+url);
         get(url);
     }
 
     public Site getSiteDetails() {
         Site siteDetails = new Site().toBuilder().title(title()).build();
-        logger.info("Site Details => "+siteDetails.toString());
+        log("Site Details => "+siteDetails.toString());
         return siteDetails;
     }
 
