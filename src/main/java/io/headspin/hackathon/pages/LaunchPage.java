@@ -16,7 +16,7 @@ public class LaunchPage extends BasePage {
     Logger logger;
 
     public void launch() {
-        logger.info("Launching url => "+url);
+        logger.info("Launching site => "+url);
         get(url);
     }
 

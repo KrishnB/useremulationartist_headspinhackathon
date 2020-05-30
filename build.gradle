@@ -53,6 +53,8 @@ task runTests(type: Test) {
         excludeGroups "units"
         testLogging.showStandardStreams  true
         useDefaultListeners  true
+        listeners << 'io.headspin.hackathon.listeners.SiteListener'
+        listeners << 'io.headspin.hackathon.listeners.DriverListener'
         outputDirectory  file("$buildDir/" + System.getProperty('tags', 'NONE'))
     }
 }

@@ -11,47 +11,10 @@ import io.headspin.hackathon.modules.SiteModule;
 import io.headspin.hackathon.pages.LaunchPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
-@Guice(modules = {PropertyModule.class, SiteModule.class})
+@Guice(modules = {SiteModule.class, PropertyModule.class})
 public class BaseTest {
 
-    private WebDriver driver;
-
-    @Inject
-    private Injector parentInjector,  // Instantiates suite level objects, like env properties, site clients etc.
-            driverInjector; // Instantiates singleton driver per test.
-
-    @Inject
-    SiteClient siteClient;
-
-    @BeforeSuite(alwaysRun = true)
-    public void verifyIfEnvIsAvailable() {
-        siteClient.terminateIfSiteIsDown();
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void setup(ITestContext iTestContext) {
-        driverInjector = parentInjector.createChildInjector(new BrowserModule(),
-                new PageModule()); //Lazy injection of driver and pages to support test parallelism
-        driver = driverInjector.getInstance(WebDriver.class);
-        launchSite();
-        iTestContext.setAttribute(Constants.DRIVER_INJECTOR, driverInjector);
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.close();
-    }
-
-
-    protected <T> T getPage(Class<T> tClass) {
-       return driverInjector.getInstance(tClass);
-    }
-
-    protected void launchSite() {
-        LaunchPage launchPage = getPage(LaunchPage.class);
-        launchPage.launch();
-        launchPage.getSiteDetails().assertThatSiteIsUp();
-    }
 }

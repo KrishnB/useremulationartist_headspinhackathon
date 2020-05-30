@@ -9,12 +9,16 @@ import okhttp3.Request.Builder;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class SiteClient {
 
     @Inject
     @Url
     String url;
+
+    @Inject
+    Logger logger;
 
     private OkHttpClient okHttpClient;
     public SiteClient() {
@@ -38,8 +42,9 @@ public class SiteClient {
             if(isSiteDown()) {
                 throw new UnReachableSiteException(url);
             }
+            logger.info("Proceeding ahead as env is available");
         } catch (UnReachableSiteException e) {
-            e.printStackTrace();
+            logger.info("Unable to reach site, terminating build");
             System.exit(1);
         }
     }

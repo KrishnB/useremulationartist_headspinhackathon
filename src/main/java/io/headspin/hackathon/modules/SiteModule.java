@@ -7,6 +7,6 @@ public class SiteModule extends AbstractModule {
 
     @Override
     public void configure() {
-        bind(SiteClient.class);
+        bind(SiteClient.class).asEagerSingleton();
     }
 }
