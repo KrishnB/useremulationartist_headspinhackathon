@@ -15,11 +15,9 @@ public class FirefoxDriverManager extends DriverManager {
     }
 
     @Override
-    public WebDriver createDriver() {
+    public WebDriver setupDriver() {
         setup();
-        driver.set(new FirefoxDriver(browserOptions()));
-        driver.get().manage().window().maximize();
-        return driver.get();
+        return launchDriver(new FirefoxDriver(browserOptions()));
     }
 
     @Override
@@ -43,7 +41,7 @@ public class FirefoxDriverManager extends DriverManager {
 
     @Override
     public WebDriver get() {
-        createDriver();
+        setupDriver();
         return driver.get();
     }
 }

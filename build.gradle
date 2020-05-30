@@ -30,7 +30,7 @@ dependencies {
     implementation group: 'org.jeasy', name: 'easy-random', version: '4.2.0', ext: 'pom'
 
     //testng
-    testImplementation group: 'org.testng', name: 'testng', version: '7.1.0'
+    implementation group: 'org.testng', name: 'testng', version: '7.1.0'
 
     //assertj
     implementation 'org.assertj:assertj-core:3.16.1'
@@ -41,7 +41,7 @@ tasks.withType(Test) {
             env                     : System.getProperty('env', 'dev'),
             tags                    : System.getProperty('tags', 'hackathon'),
             browser                 : System.getProperty('browser', 'chrome'),
-            target                  : System.getProperty('target', 'local')
+            target                  : System.getProperty('target', 'ui')
     ]
 }
 

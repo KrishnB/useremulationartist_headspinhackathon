@@ -17,11 +17,10 @@ public class ChromeDriverManager extends DriverManager {
     }
 
     @Override
-    public WebDriver createDriver() {
+    public WebDriver setupDriver() {
         setup();
-        driver.set(new ChromeDriver(browserOptions()));
-        driver.get().manage().window().maximize();
-        return driver.get();
+
+        return launchDriver(new ChromeDriver(browserOptions()));
     }
 
     @Override
@@ -45,7 +44,7 @@ public class ChromeDriverManager extends DriverManager {
 
     @Override
     public WebDriver get() {
-        createDriver();
+        setupDriver();
         return driver.get();
     }
 }

@@ -11,14 +11,10 @@ import io.headspin.hackathon.modules.SiteModule;
 import io.headspin.hackathon.pages.LaunchPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Guice;
+import org.testng.annotations.*;
 
 @Guice(modules = {PropertyModule.class, SiteModule.class})
-public
-class BaseTest {
+public class BaseTest {
 
     private WebDriver driver;
 
@@ -28,9 +24,6 @@ class BaseTest {
 
     @Inject
     SiteClient siteClient;
-
-    @Inject
-    SiteAssertions siteAssertions;
 
     @BeforeSuite(alwaysRun = true)
     public void verifyIfEnvIsAvailable() {
@@ -59,6 +52,6 @@ class BaseTest {
     protected void launchSite() {
         LaunchPage launchPage = getPage(LaunchPage.class);
         launchPage.launch();
-        siteAssertions.assertThatSiteIsLoadedSuccessfully(launchPage.getSiteDetails());
+        launchPage.getSiteDetails().assertThatSiteIsUp();
     }
 }

@@ -9,7 +9,7 @@ public interface Driver {
 
     void setup();
 
-    WebDriver createDriver();
+    WebDriver setupDriver();
 
     void terminateDriver();
 
