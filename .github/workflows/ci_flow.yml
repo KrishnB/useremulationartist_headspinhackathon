@@ -23,6 +23,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
   test:
+    needs: build
     runs-on: ubuntu-latest
     container: krishnanandb/chromeheadless
     steps:
