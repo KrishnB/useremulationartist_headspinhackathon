@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'io.headspin.hackathon'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //selenium
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-6'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.0.0'
+
+    //lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+    //guice
+    compile group: 'com.google.inject', name: 'guice', version: '4.2.3'
+
+    //jeasy
+    implementation group: 'org.jeasy', name: 'easy-random', version: '4.2.0', ext: 'pom'
+
+    //testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.1.0'
+}
