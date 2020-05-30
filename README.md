@@ -1,1 +1,3 @@
-# user_emulation_artist_headspin_hackathon
+# Headspin Hackathon
+
+A code base for headspin hackathon
