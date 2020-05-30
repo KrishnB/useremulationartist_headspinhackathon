@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: krishnanandb/chromeheadless
 
     steps:
     - uses: actions/checkout@v2
@@ -25,5 +25,4 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Run Tests
-      uses: krishnanandb/chromeheadless
       run: ./gradlew runTests -Dtarget=headless
