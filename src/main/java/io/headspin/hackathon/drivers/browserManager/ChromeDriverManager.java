@@ -7,6 +7,7 @@ import io.headspin.hackathon.properties.SystemProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class ChromeDriverManager extends DriverManager {
@@ -19,7 +20,6 @@ public class ChromeDriverManager extends DriverManager {
     @Override
     public WebDriver setupDriver() {
         setup();
-
         return launchDriver(new ChromeDriver(browserOptions()));
     }
 

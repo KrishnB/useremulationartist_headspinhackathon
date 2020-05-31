@@ -2,6 +2,8 @@ package io.headspin.hackathon.modules;
 
 import com.google.inject.AbstractModule;
 import io.headspin.hackathon.drivers.Browser;
+import io.headspin.hackathon.drivers.Target;
+import io.headspin.hackathon.drivers.browserManager.HeadSpinDriverManager;
 import io.headspin.hackathon.drivers.wait.Waits;
 import io.headspin.hackathon.drivers.browserManager.ChromeDriverManager;
 import io.headspin.hackathon.drivers.browserManager.FirefoxDriverManager;
@@ -16,7 +18,11 @@ public class BrowserModule extends AbstractModule {
 
     @Override
     public void configure() {
-        bind(WebDriver.class).toProvider(getBrowserManager()).asEagerSingleton();
+        if(SystemProperties.TARGET.equals(Target.HEADSPIN.name().toLowerCase())) {
+            bind(WebDriver.class).toProvider(HeadSpinDriverManager.class).asEagerSingleton();
+        }else {
+            bind(WebDriver.class).toProvider(getBrowserManager()).asEagerSingleton();
+        }
         bind(WebDriverWait.class).toProvider(Waits.class).asEagerSingleton();
     }
 

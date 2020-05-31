@@ -1,0 +1,11 @@
+{
+  "url": "https://dev-us-pao-0.headspin.io:9092/v0/0c91b1a89f424ae18585991c72f78fb0/wd/hub",
+  "caps": {
+    "screenSize": {
+      "width": 1920,
+      "height": 1080
+    },
+    "browserName": "chrome",
+    "browserVersion": "76.0.3809.100"
+  }
+}

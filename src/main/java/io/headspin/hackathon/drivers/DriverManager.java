@@ -16,6 +16,11 @@ public abstract class DriverManager implements Driver, Provider<WebDriver> {
     protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @Override
+    public void setup() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public WebDriver getDriver() {
         return driver.get();
     }
