@@ -76,9 +76,13 @@ public class HotelBookingPlannerComponent extends BookingPlannerComponent {
     }
 
     private void travelReason(String travelReason) {
-        click(travelFor, "travelling for reason");
-        findFromList(travelReasons, "data-cy", travelReason)
-                .click();
+       try {
+           click(travelFor, "travelling for reason");
+           findFromList(travelReasons, "data-cy", travelReason)
+                   .click();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 
     public void search() {
