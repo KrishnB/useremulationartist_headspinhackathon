@@ -12,19 +12,18 @@ public class LaunchPage extends BasePage {
     @Url
     String url;
 
+    @Inject
+    Site site;
+
 
     public void launch() {
-        log("Launching site => "+url);
+        log("launches site "+url);
         get(url);
     }
 
     public Site getSiteDetails() {
-        Site siteDetails = new Site().toBuilder().title(title()).build();
-        log("Site Details => "+siteDetails.toString());
+        Site siteDetails = site.toBuilder().title(title()).build();
+        log("verifies site details "+siteDetails.toString());
         return siteDetails;
-    }
-
-    public LaunchPage get() {
-        return (LaunchPage) init(this);
     }
 }

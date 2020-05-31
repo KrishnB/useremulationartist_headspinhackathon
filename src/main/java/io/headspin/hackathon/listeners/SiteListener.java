@@ -2,7 +2,7 @@ package io.headspin.hackathon.listeners;
 
 import com.google.inject.Injector;
 import io.headspin.hackathon.clients.SiteClient;
-import io.headspin.hackathon.io.LogManager;
+import io.headspin.hackathon.io.LogWriter;
 import io.headspin.hackathon.modules.PropertyModule;
 import io.headspin.hackathon.modules.SiteModule;
 import io.headspin.hackathon.site.Constants;
@@ -21,7 +21,7 @@ public class SiteListener implements ISuiteListener {
         Logger logger = siteInjector.getInstance(Logger.class);
         log("Verifying if site is up");
         siteInjector.getInstance(SiteClient.class).terminateIfSiteIsDown();
-        String logFolder = siteInjector.getInstance(LogManager.class).createLogFolder();
+        String logFolder = siteInjector.getInstance(LogWriter.class).createLogFolder();
         suite.setAttribute(Constants.LOG_FOLDER, logFolder);
     }
 }

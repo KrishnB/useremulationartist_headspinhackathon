@@ -3,6 +3,7 @@ package io.headspin.hackathon.clients;
 import com.google.inject.Inject;
 import io.headspin.hackathon.annotations.Url;
 import io.headspin.hackathon.exceptions.UnReachableSiteException;
+import io.qameta.allure.Step;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Request.Builder;
@@ -25,6 +26,7 @@ public class SiteClient {
         okHttpClient = new OkHttpClient();
     }
 
+    @Step("Checking if site is down")
     public boolean isSiteDown() {
         try {
             Request siteRequest = buildBasicRequest();

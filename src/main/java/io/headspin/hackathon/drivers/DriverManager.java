@@ -4,12 +4,12 @@ import com.google.inject.Provider;
 import io.headspin.hackathon.properties.SystemProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public abstract class DriverManager implements Driver, Provider<WebDriver> {
 
