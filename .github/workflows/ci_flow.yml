@@ -37,8 +37,10 @@ jobs:
       - name: run hackathon tests
         run: ./gradlew runTests -Dtarget=headless
       - name: generate report
+        if: always()
         run: ./gradlew allureReport
       - name: save reports
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: reports
