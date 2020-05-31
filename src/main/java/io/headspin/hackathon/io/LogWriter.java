@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class LogManager {
+public class LogWriter {
 
     private static final String ROOT_FOLDER = "logs";
 

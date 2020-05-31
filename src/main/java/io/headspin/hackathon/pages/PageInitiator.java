@@ -6,9 +6,10 @@ import org.testng.Reporter;
 
 public class PageInitiator {
 
-    public static <T> T getPage(Class<T> tClass) {
+    public static <T extends BasePage> T getPage(Class<T> tClass) {
         Injector pageInjector = (Injector) Reporter.getCurrentTestResult()
                 .getAttribute(Constants.PAGE_INJECTOR);
-        return pageInjector.getInstance(tClass);
+        T page = pageInjector.getInstance(tClass);
+        return (T) page.init(page);
     }
 }

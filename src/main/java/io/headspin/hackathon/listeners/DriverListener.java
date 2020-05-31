@@ -17,7 +17,8 @@ public class DriverListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        ThreadContext.put("ROUTINGKEY", result.getName());
+        Reporter.log(String.format("Test %s has started", result.getName().toLowerCase()));
+        addDivider();
         Injector driverInjector = result.getTestContext().getSuite().getParentInjector().createChildInjector(setupModules());
         result.setAttribute(Constants.DRIVER_INJECTOR, driverInjector);
         result.setAttribute(Constants.PAGE_INJECTOR, driverInjector);
@@ -53,8 +54,13 @@ public class DriverListener implements ITestListener {
     public void quit(ITestResult result) {
         Injector driver = (Injector) result.getAttribute(Constants.DRIVER_INJECTOR);
         WebDriver driverInstance = driver.getInstance(WebDriver.class);
-        Reporter.log("Quitting driver "+driverInstance.toString());
+        addDivider();
+        Reporter.log(String.format("Test %s has ended",result.getName().toLowerCase()));
         driverInstance.quit();
+    }
+
+    private void addDivider() {
+        Reporter.log("==================================================");
     }
 
     private List<Module> setupModules() {

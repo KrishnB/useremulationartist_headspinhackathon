@@ -2,6 +2,7 @@ package io.headspin.hackathon.models;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.name.Named;
 import lombok.*;
 
 import java.util.Objects;
@@ -16,6 +17,9 @@ public class Site implements Entity<Site>, Provider<Site> {
     @Inject
     Logger logger;
 
+    @Inject
+    @Named("title") String siteTitle;
+
     @Override
     public Site init() {
         return this.toBuilder()
@@ -24,7 +28,7 @@ public class Site implements Entity<Site>, Provider<Site> {
     }
 
     public void assertThatSiteIsUp() {
-        assertThat(title).startsWith("MakeMyTrip");
+        assertThat(title).startsWith(siteTitle);
     }
 
     @Override

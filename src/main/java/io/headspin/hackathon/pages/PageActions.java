@@ -75,4 +75,7 @@ public interface PageActions<T>  {
     Boolean waitForFrameToLoad(Integer index);
 
     void switchToDefaultContent();
+
+    void log(String message);
 }
+
