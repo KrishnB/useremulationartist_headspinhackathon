@@ -6,6 +6,7 @@ import io.headspin.hackathon.mmt.pages.components.planner.HotelBookingPlannerCom
 import io.headspin.hackathon.models.booking.BookingPlanner;
 import io.headspin.hackathon.models.booking.BookingType;
 import io.headspin.hackathon.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,6 +23,7 @@ public class BookingPlannerComponent extends BasePage<BookingPlannerComponent> {
     @Inject
     private HotelBookingPlannerComponent hotelBookingPlannerComponent;
 
+    @Step("Navigating to booking planner")
     public BookingPlannerComponent getBookingPlannerComponent(BookingType bookingType) {
         return bookingPlannerComponents().get(bookingType);
     }

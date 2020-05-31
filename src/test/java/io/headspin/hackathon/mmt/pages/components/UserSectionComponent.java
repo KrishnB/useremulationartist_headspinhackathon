@@ -2,6 +2,7 @@ package io.headspin.hackathon.mmt.pages.components;
 
 import io.headspin.hackathon.mmt.pages.LoginPage;
 import io.headspin.hackathon.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,9 +25,9 @@ public class UserSectionComponent extends BasePage<UserSectionComponent> {
     @FindBy(css = "li[data-cy='myBiz']")
     private WebElement myBiz;
 
+    @Step("Navigating to login")
     public LoginPage navToLogin() {
-        log("clicks on account");
-        click(account);
+        click(account, "account");
         return getPage(LoginPage.class);
     }
 }

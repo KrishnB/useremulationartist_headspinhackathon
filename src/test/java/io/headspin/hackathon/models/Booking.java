@@ -1,9 +1,11 @@
 package io.headspin.hackathon.models;
 
+import io.headspin.hackathon.models.booking.BookingFilters;
 import io.headspin.hackathon.models.booking.BookingPlanner;
 import io.headspin.hackathon.models.booking.BookingType;
-import io.headspin.hackathon.models.booking.planner.HotelBookingPlanner;
 import lombok.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Getter
 @Setter
@@ -12,6 +14,9 @@ import lombok.*;
 public class Booking implements Entity<Booking> {
     private BookingType bookingType;
     private BookingPlanner bookingPlanner;
+    private BookingFilters bookingFilters;
+    private String  hotelName;
+    private String rating;
 
     @Override
     public Booking init() {
@@ -19,6 +24,11 @@ public class Booking implements Entity<Booking> {
         return this.toBuilder()
                 .bookingType(bookingType)
                 .bookingPlanner(bookingType.getBookingPlanner())
+                .bookingFilters(bookingType.getBookingFilters())
                 .build();
+    }
+
+    public void assertHotelNameIsCorrect(String hotelName) {
+        assertThat(this.hotelName).isEqualTo(hotelName);
     }
 }

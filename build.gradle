@@ -78,3 +78,16 @@ task runTests(type: Test) {
         outputDirectory  file("$buildDir/" + System.getProperty('tags', 'NONE'))
     }
 }
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = '2.10.0'
+}
+
+// Execution Rules
+
+tasks.runTests.dependsOn 'clean', 'build'
+tasks.build.mustRunAfter 'clean'
+tasks.runTests.finalizedBy('allureReport')

@@ -41,4 +41,9 @@ jobs:
         with:
           name: logs
           path: logs
+      - name: save reports
+          uses: actions/upload-artifact@v1
+          with:
+            name: reports
+            path: build/reports/allure-report
 

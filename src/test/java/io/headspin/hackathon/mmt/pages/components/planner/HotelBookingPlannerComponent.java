@@ -5,6 +5,7 @@ import io.headspin.hackathon.mmt.pages.ListingPage;
 import io.headspin.hackathon.mmt.pages.components.BookingPlannerComponent;
 import io.headspin.hackathon.models.booking.BookingPlanner;
 import io.headspin.hackathon.models.booking.planner.HotelBookingPlanner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -48,6 +49,7 @@ public class HotelBookingPlannerComponent extends BookingPlannerComponent {
     @FindBy(css = "button[id=\"hsw_search_button\"]")
     private WebElement search;
 
+    @Step("Creating a new booking")
     public ListingPage makeBooking(BookingPlanner hotelBookingPlanner) {
         searchFor(((HotelBookingPlanner)hotelBookingPlanner).getSearchFor());
         travelReason(hotelBookingPlanner.getTravelingFor());

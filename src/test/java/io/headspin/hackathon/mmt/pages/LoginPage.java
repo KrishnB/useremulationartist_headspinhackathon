@@ -2,6 +2,7 @@ package io.headspin.hackathon.mmt.pages;
 
 import io.headspin.hackathon.models.Credentials;
 import io.headspin.hackathon.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,7 @@ public class LoginPage extends BasePage<LoginPage> {
     @FindBy(css = "button[data-cy='login']")
     private WebElement loginBtn;
 
+    @Step("Customer login with {credentials.username}")
     public HomePage login(Credentials credentials) {
         type(username, credentials.getUsername(), "username");
         click(continueBtn, "continue");

@@ -2,24 +2,17 @@ package io.headspin.hackathon.pages;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import io.headspin.hackathon.annotations.Log;
 import io.headspin.hackathon.annotations.Screenshot;
 import io.headspin.hackathon.reports.ReportLogger;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.LogManager;
-
-import static io.headspin.hackathon.pages.PageInitiator.getPage;
 
 public abstract class BasePage<T> implements PageActions<T> {
 
@@ -130,6 +123,13 @@ public abstract class BasePage<T> implements PageActions<T> {
         return item.orElseThrow(RuntimeException::new);
     }
 
+    public WebElement findFromList(List<WebElement> elementsList, String matcher) {
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(elementsList));
+        Optional<WebElement> item = elementsList.stream().filter(element -> element.getText().toLowerCase().contains(matcher.toLowerCase()))
+                .findFirst();
+        return item.orElseThrow(RuntimeException::new);
+    }
+
     public void waitForElementToBeInvisible(WebElement webElement) {
         try {
             webDriverWait.until(ExpectedConditions.invisibilityOf(webElement));
@@ -153,5 +153,26 @@ public abstract class BasePage<T> implements PageActions<T> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setAttribute(WebElement element, String attName, String attValue) {
+        jsDriver().executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
+                element, attName, attValue);
+    }
+
+    public void waitForElementsToBeDisplayed(List<WebElement> elements) {
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    }
+
+    public void switchTab() {
+        String currentWindowHandle = webDriver.getWindowHandle();
+        Optional<String> tab = webDriver.getWindowHandles().stream()
+                .filter(handle -> !handle.equals(currentWindowHandle))
+                .findFirst();
+        tab.ifPresent(s -> webDriver.switchTo().window(s));
+    }
+
+    private JavascriptExecutor jsDriver() {
+        return ((JavascriptExecutor)webDriver);
     }
 }

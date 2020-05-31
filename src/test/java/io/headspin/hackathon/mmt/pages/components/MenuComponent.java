@@ -2,6 +2,7 @@ package io.headspin.hackathon.mmt.pages.components;
 
 import io.headspin.hackathon.models.booking.BookingType;
 import io.headspin.hackathon.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,7 @@ public class MenuComponent extends BasePage {
     @FindBy(css = "li[data-cy^=\"menu\"]")
     private List<WebElement> menuItems;
 
+    @Step("Navigating to menu {bookingType}")
     public BookingPlannerComponent navToMenu(BookingType bookingType) {
         init(this);
         click(findMenuItem(bookingType.name()), bookingType.name().toLowerCase());
