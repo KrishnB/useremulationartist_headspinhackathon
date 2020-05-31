@@ -24,7 +24,7 @@ public class HotelBookingTest extends BaseTest {
     Customer customerProvider;
 
     @Description("Book a hotel using valid customer booking details")
-    public void bookAHotel() throws InterruptedException {
+    public void customerShouldBeAbleToBookAHotel() throws InterruptedException {
         HomePage homePage = getPage(HomePage.class);
         Customer customer = customerProvider.init();
         homePage.getUserSectionComponent()
