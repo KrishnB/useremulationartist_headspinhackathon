@@ -52,6 +52,7 @@ public class HotelBookingPlannerComponent extends BookingPlannerComponent {
     @Step("Creating a new booking")
     public ListingPage makeBooking(BookingPlanner hotelBookingPlanner) {
         searchFor(((HotelBookingPlanner)hotelBookingPlanner).getSearchFor());
+        click(city);
         travelReason(hotelBookingPlanner.getTravelingFor());
         guests(((HotelBookingPlanner) hotelBookingPlanner).getGuests(), ((HotelBookingPlanner) hotelBookingPlanner).getRooms());
         search();
