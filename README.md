@@ -1,6 +1,6 @@
 # Headspin Hackathon ![](https://github.com/KrishnB/useremulationartist_headspinhackathon/workflows/Headspin%20Hackathon%20Automation%20CI/badge.svg)
 
-A code base for headspin hackathon
+A code base for headspin hackathon 
 
 ![](docs/run.gif)
 
@@ -128,5 +128,6 @@ Framework also capture screenshot at the time of test failure
 
 ## P.S
 These approaches are pointers of how the solution can be taken  forward.
+You can read more about the framework from [Wiki](https://github.com/KrishnB/useremulationartist_headspinhackathon/wiki)
 
 
