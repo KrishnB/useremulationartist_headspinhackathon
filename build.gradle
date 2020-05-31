@@ -87,7 +87,6 @@ allure {
 }
 
 // Execution Rules
-
 tasks.runTests.dependsOn 'clean', 'build'
 tasks.build.mustRunAfter 'clean'
 tasks.runTests.finalizedBy('allureReport')
