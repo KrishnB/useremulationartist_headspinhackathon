@@ -47,12 +47,15 @@ Logs are captured per test, these can be found in below path
 `logs/*.log`
 
 ## Stack
-* Language: Java, Groovy
-* BuildTool : Gradle
-* Reporting: Allure
-* DI: Guice
-* TestFramework: TestNG
-* Environments: dev
+
+| Category       | Value          |
+| -------------- | ---------------|
+| Language       | Java, Groovy   | 
+| BuildTool      | Gradle         | 
+| Reporting      | Allure         | 
+| DI             | Guice          | 
+| TestFramework  | TestNG         | 
+| Environments   | dev            | 
 
 ## Framework Supports
 
