@@ -63,7 +63,7 @@ Logs are captured per test, these can be found in below path
 | --------- | ---------|---------|------------------------|-----------|
 | Mac       | Chrome   | UI      | On every click and type| Yes       |
 | Linux     | Firefox  | Headless| On Test Failure        | Yes       |
-| Windows   |          | Headspin|                        | No        |
+| Windows   |          | [Headspin](https://www.headspin.io)|                        | No        |
 
 ## Scenarios Covered
 * Make a hotel booking
